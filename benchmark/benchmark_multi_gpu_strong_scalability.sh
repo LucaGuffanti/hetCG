@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mkdir -p results
-mkdir -p results/multi_gpu
+mkdir -p results/multi_gpu/strong
 
 cd multi_gpu
 
@@ -19,7 +19,7 @@ MATRIX_SIZE=70000
 path_to_dir="/project/home/p200301/tests"
 
 # Output file for averages
-averages_file="../results/multi_gpu/averages.txt"
+averages_file="../results/multi_gpu/strong/averages.txt"
 echo "matrix_size gpus time" >> "${averages_file}"
 
 # Loop over different matrix sizes
@@ -28,7 +28,7 @@ echo "Matrix size: ${MATRIX_SIZE}"
 
 for ((num_gpus=4; num_gpus<=16; num_gpus=num_gpus+1)); do
     echo "using ${num_gpus} gpus"
-    single_time_file="../results/multi_gpu/times${MATRIX_SIZE}_${num_gpus}.txt"
+    single_time_file="../results/multi_gpu/strong/times${MATRIX_SIZE}_${num_gpus}.txt"
 
     matrix_file="$path_to_dir/matrix${MATRIX_SIZE}.bin"
     vector_file="$path_to_dir/rhs${MATRIX_SIZE}.bin"
