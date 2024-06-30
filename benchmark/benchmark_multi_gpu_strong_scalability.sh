@@ -1,6 +1,7 @@
 #!/bin/bash
 
 mkdir -p results
+mkdir -p results/multi_gpu
 mkdir -p results/multi_gpu/strong
 
 cd multi_gpu
