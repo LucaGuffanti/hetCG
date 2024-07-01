@@ -78,7 +78,7 @@ int main(int argc, char** argv)
         if (currentrow != matrixDimension - 1){
             matrixLocal[i * matrixDimension + currentrow + 1] = 1.0;
         }
-        matrixLocal[i * matrixDimension + currentrow] = 2.0;
+        matrixLocal[i * matrixDimension + currentrow] = -2.0;
     }
 
     // Compute the actual displacements in term of elements
@@ -98,18 +98,6 @@ int main(int argc, char** argv)
 
     MPI_Gatherv(matrixLocal, rows_per_rank[rank] * matrixDimension, MPI_DOUBLE, globalMatrix, elements, elements_displacements, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
-    if (rank == 0)
-    {
-        std::cout << "The global matrix is " << std::endl;
-        for (int i = 0; i < matrixDimension; i++)
-        {
-            for (int j = 0; j < matrixDimension; j++)
-            {
-                std::cout << globalMatrix[i * matrixDimension + j] << " ";
-            }
-            std::cout << std::endl;
-        }
-    }
 
     MPI_File fh_matrix;
     std::string matrix_name = "matrix"+std::to_string(matrixDimension)+".bin";
